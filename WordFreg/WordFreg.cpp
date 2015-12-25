@@ -11,13 +11,13 @@
 #include <vector>
 using namespace std;
 
-void WordFreg::ReadStat(char* arg)
+void WordFreg::ReadStat(char* arg) // Read old statistic
 {
 	std::fstream in;
 	in.open(arg);
 	std::string word;
 	int numStat{ 0 };
-	while(!in.eof())
+	while (!in.eof())
 	{
 		in >> word >> numStat;
 		_data[word] = numStat;
@@ -25,32 +25,32 @@ void WordFreg::ReadStat(char* arg)
 	in.close();
 }
 
-void WordFreg::GetStat(char* arg) {
+void WordFreg::GetStat(char* arg) { // get new statistic
 	string path(arg);
 	std::fstream in2;
 	in2.open(path);
 
-    if(!in2.is_open())
-    {
-        return;
-    }
-    std::string temp;
-    std::vector<std::string> splitedLine;
-    while(!in2.eof())
-    {
-        std::getline(in2, temp);
-        boost::split(splitedLine, temp, boost::is_any_of("  ` .,*-|?:'><()"));
-        while (!splitedLine.empty())
-        {
+	if (!in2.is_open())
+	{
+		return;
+	}
+	std::string temp;
+	std::vector<std::string> splitedLine;
+	while (!in2.eof())
+	{
+		std::getline(in2, temp);
+		boost::split(splitedLine, temp, boost::is_any_of("  ` .,*-|?:'><()"));
+		while (!splitedLine.empty())
+		{
 			temp = splitedLine.back();
 			boost::algorithm::to_lower(temp);
-            _data[temp]++;
-            splitedLine.pop_back();
-        }
-    }
+			_data[temp]++;
+			splitedLine.pop_back();
+		}
+	}
 	in2.close();
 	_data.erase("");
-    std::cout << "Statistic is ready" << std::endl;
+	std::cout << "Statistic is ready" << std::endl;
 
 	for (std::map<std::string, int>::const_iterator it = _data.begin(); it != _data.end(); ++it)
 	{
@@ -58,7 +58,7 @@ void WordFreg::GetStat(char* arg) {
 	}
 }
 
-void WordFreg::save(char* arg)
+void WordFreg::save(char* arg) // save current result
 {
 	ofstream out(arg);
 	for (std::map<std::string, int>::const_iterator it = _data.begin(); it != _data.end(); ++it)
@@ -68,3 +68,7 @@ void WordFreg::save(char* arg)
 	out.close();
 }
 
+void WordFreg::clear() // reset current statistic
+{
+	_data = map<string, int>();
+}

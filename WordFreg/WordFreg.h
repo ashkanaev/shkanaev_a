@@ -8,14 +8,15 @@
 
 class WordFreg {
 public:
-    WordFreg() = default;
-    WordFreg(const WordFreg& arg) = default;
+	WordFreg() = default;
+	WordFreg(const WordFreg& arg) = default;
 	WordFreg& operator=(const WordFreg& arg) = default;
 	void ReadStat(char* arg);
-    void GetStat(char* arg);
+	void GetStat(char* arg);
 	void save(char* arg);
+	void clear();
 private:
-    std::map<std::string,int> _data;
+	std::map<std::string, int> _data;
 };
 
 
