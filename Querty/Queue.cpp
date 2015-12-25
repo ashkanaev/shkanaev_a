@@ -1,6 +1,7 @@
 #include "Queue.h"
 #include <stdexcept>
 #include <iostream>
+#include <list>
 
 using namespace std;
 
@@ -80,4 +81,20 @@ Node::Node(const ValueType v, Node * next, Node * last)
 	, next_{ next }
 	,last_{last}
 {
+}
+
+Queue::Queue(const Queue& arg)
+{
+	list<ValueType> tmp2;
+	Node* tmp = arg.head_;
+	while (tmp != nullptr)
+	{
+		tmp2.push_back(tmp->data_);
+		tmp = tmp->next_;
+	}
+	while (!tmp2.empty())
+	{
+		pushEnd(tmp2.front());
+		tmp2.pop_front();
+	}
 }

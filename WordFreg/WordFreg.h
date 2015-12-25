@@ -5,13 +5,14 @@
 #define WORDFEG_WORDFREG_H
 
 #include <map>
-#include <vector>
 
 class WordFreg {
 public:
     WordFreg() = default;
     WordFreg(const WordFreg& arg) = default;
-    void readStat(char* arg);
+	WordFreg& operator=(const WordFreg& arg) = default;
+	void ReadStat(char* arg);
+    void GetStat(char* arg);
 	void save(char* arg);
 private:
     std::map<std::string,int> _data;

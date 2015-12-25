@@ -13,6 +13,8 @@ class Queue
 {
 public:
 	Queue() = default;
+	Queue(const Queue& arg);
+	Queue& operator=(const Queue& arg) = default;
 	~Queue();
 	bool isEmpty() const;
 	void pushFront(const ValueType& arg);
@@ -21,6 +23,7 @@ public:
 	void popEnd();
 	ValueType topFront() const;
 	ValueType topEnd() const;
+
 private:
 	Node* head_{ nullptr };
 	Node* tail_{ nullptr };

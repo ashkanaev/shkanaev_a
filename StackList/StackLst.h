@@ -1,3 +1,4 @@
+#include <iostream>
 
 using ValueType = double;
 struct Node;
@@ -12,12 +13,14 @@ class Stacklst
 {
 public:
 	Stacklst() = default;
+	Stacklst(const Stacklst& arg);
+	Stacklst& operator=(const Stacklst& arg) = default;
 	~Stacklst();
 	bool isEmpty() const;
 	void push(const ValueType& arg);
 	ValueType pop();
 	ValueType top() const;
-
 private:
 	Node* head_{ nullptr };
 };
+

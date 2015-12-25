@@ -9,6 +9,8 @@ class Stack
 
 public:
 	Stack();
+	Stack(const Stack& arg) noexcept = default;
+	Stack& operator=(const Stack& arg) = default;
 	~Stack();
 	bool isEmpty() const;
 	void push(const ValueType& arg);

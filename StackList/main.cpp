@@ -24,4 +24,5 @@ void main()
 {
 	Stacklst aa;
 	testStack(aa);
+	Stacklst bb(aa);
 }
